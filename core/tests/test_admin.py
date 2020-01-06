@@ -23,3 +23,16 @@ class AdminTests(TestCase):
         response = self.client.get(url)
         self.assertContains(response, self.user.name)
         self.assertContains(response, self.user.email)
+
+    def test_user_change_page(self):
+        """Test user editing page is ok"""
+        url = reverse('admin:core_user_change', args=[self.user.id])
+        result = self.client.get(url)
+
+        self.assertEqual(result.status_code, 200)       # Http response is ok 200
+
+    def test_user_page_render(self):
+        """Test user page works"""
+        url = reverse('adnin: core_user_add')
+        result = self.client.get(url)
+        self.assertEqual(result.status_code, 200)
